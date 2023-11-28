@@ -19,7 +19,7 @@ Univeristy Task
 Clone the project
 
 ```bash
-git clone https://github.com/maxivecchio/server
+git clone https://github.com/maxivecchio/moveup-marketplace-fullstack
 ```
 
 ## Run Server
