@@ -1,8 +1,8 @@
 import { RiShoppingCartLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
-import useProductBySlug from "../hooks/useProductBySlug";
 import { useAuth } from "../context/AuthContext";
 import axios from "axios";
+import { enqueueSnackbar } from "notistack";
 
 const ProductCard = ({ product, variant = "shop" }) => {
   function numberWithDot(x) {
@@ -12,11 +12,12 @@ const ProductCard = ({ product, variant = "shop" }) => {
     return x;
   }
 
+  console.log(product);
 
   const MobileBtn = () => {
     return (
       <>
-        <span className="hidden sm:block">Añadir al Carrito</span>
+        <span className="hidden sm:block">Add to Cart</span>
         <RiShoppingCartLine className="mx-auto sm:hidden" />
       </>
     );
@@ -46,7 +47,10 @@ const ProductCard = ({ product, variant = "shop" }) => {
           quantity: 1,
         }
       );
-
+      enqueueSnackbar({
+        message: `Successfully added ${product.name} to your cart.`,
+        variant: "info",
+      });
       console.log("Producto agregado al carrito:", response.data);
     } catch (error) {
       console.error("Error al agregar al carrito:", error.message);
@@ -94,7 +98,7 @@ const ProductCard = ({ product, variant = "shop" }) => {
               : "mx-auto w-4/5 sm:w-full sm:max-w-xs mt-2 sm:mt-4"
           } rounded p-2`}
         >
-          {variant === "home" ? "Añadir al carrito" : <MobileBtn />}
+          {variant === "home" ? "Add to Cart" : <MobileBtn />}
         </button>
       </div>
     </div>

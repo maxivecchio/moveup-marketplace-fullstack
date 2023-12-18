@@ -7,6 +7,10 @@ const {
     deleteObject,
 } = require("firebase/storage");
 
+const {
+    removeProductFromAllCarts
+} = require('../controllers/cartController');
+
 const MIMETYPES = ["image/jpg", "image/png", "image/jpeg"];
 
 const firebaseConfig = {
@@ -25,6 +29,7 @@ const storageRef = ref(storage);
 const multer = require('multer');
 
 const storageMiddleware = multer.memoryStorage();
+
 
 const multerUpload = multer({
     storage: storageMiddleware,
@@ -167,8 +172,11 @@ exports.deleteProduct = async (req, res) => {
     try {
         let product = await Product.findById(req.params.id);
         if (!product) return res.status(404).json({ msg: 'Product not found' });
-
+        
         await Product.findByIdAndRemove(req.params.id);
+
+        await removeProductFromAllCarts(req.params.id);
+
         res.json({ msg: 'Product removed' });
     } catch (err) {
         res.status(500).send('Server Error ' + err);

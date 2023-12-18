@@ -5,7 +5,6 @@ import {
   PopoverContent,
   Button,
 } from "@nextui-org/react";
-
 export default function App({ handleDelete, product }) {
   const [isOpen, setIsOpen] = useState(false);
 

@@ -4,6 +4,7 @@ import useProductBySlug from "../hooks/useProductBySlug";
 import { FaArrowLeft } from "react-icons/fa6";
 import { useAuth } from "../context/AuthContext";
 import { Spinner } from "@nextui-org/react";
+import { enqueueSnackbar } from "notistack";
 
 import {
   Button,
@@ -34,8 +35,10 @@ const ProductView = () => {
           quantity: 1,
         }
       );
-
-      console.log("Producto agregado al carrito:", response.data);
+      enqueueSnackbar({
+        message: `Successfully added ${product.name} to your cart.`,
+        variant: "info",
+      });
     } catch (error) {
       console.error("Error al agregar al carrito:", error.message);
     }

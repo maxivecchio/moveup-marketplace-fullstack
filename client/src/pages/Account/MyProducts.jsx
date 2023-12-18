@@ -12,6 +12,7 @@ import {
   Button,
   Spinner,
 } from "@nextui-org/react";
+import { enqueueSnackbar } from "notistack";
 
 const MyProducts = () => {
   const [products, setProducts] = useState([]);
@@ -42,6 +43,10 @@ const MyProducts = () => {
       });
       const data = await response.json();
       setRefetch(true);
+      enqueueSnackbar({
+        message: "Product Deleted Successfully",
+        variant: "warning",
+      });
     } catch (error) {
       console.error("Error deleting product:", error);
     }

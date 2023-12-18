@@ -12,6 +12,7 @@ import {
   Textarea,
 } from "@nextui-org/react";
 import { useAuth } from "../../context/AuthContext";
+import { enqueueSnackbar } from "notistack";
 
 export default function EditProduct({ product, setRefetch }) {
   const { userProfile, token } = useAuth();
@@ -48,6 +49,10 @@ export default function EditProduct({ product, setRefetch }) {
       );
       onOpenChange(false);
       setRefetch(true);
+      enqueueSnackbar({
+        message: "Product Updated Successfully",
+        variant: "info",
+      });
     } catch (error) {
       console.error("Error uploading product:", error.message);
     }

@@ -4,7 +4,6 @@ const Product = require("../models/Product");
 exports.getCartByUserId = async (req, res) => {
   try {
     const cart = await Cart.findOne({ user: req.params.userId }).populate("products.product");
-    console.log(cart.products);
     if (!cart) return res.status(404).json({ msg: "Cart not found" });
     const productsWithDetails = await Promise.all(
       cart.products.map(async item => {
@@ -61,6 +60,22 @@ exports.removeFromCart = async (req, res) => {
     }
   } catch (err) {
     res.status(500).send("Server Error " + err);
+  }
+};
+
+exports.removeProductFromAllCarts = async (productId) => {
+  try {
+
+    const carts = await Cart.find({ 'products.productDetails._id': productId });
+
+    for (const cart of carts) {
+      cart.products = cart.products.filter(p => !p.productDetails._id.equals(productId));
+      await cart.calculateTotalAmount(); 
+    }
+
+    console.log(`Product ${productId} removed from all carts`);
+  } catch (err) {
+    console.error("Error removing product from carts: ", err);
   }
 };
 
