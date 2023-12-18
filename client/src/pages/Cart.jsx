@@ -6,6 +6,7 @@ import { Button } from "@nextui-org/react";
 import { CiCircleCheck } from "react-icons/ci";
 import { FaRegCircleXmark } from "react-icons/fa6";
 import { Input } from "@nextui-org/react";
+import { enqueueSnackbar } from "notistack";
 
 function formatNumberToUSStyle(number) {
   if (number) {
@@ -39,7 +40,6 @@ const Cart = () => {
       const response = await axios.get(
         `http://localhost:3022/api/cart/${usuarioId}`
       );
-
       setCart(response.data);
     } catch (error) {
       console.error("Error obteniendo el carrito:", error.message);
@@ -52,6 +52,10 @@ const Cart = () => {
       const response = await axios.delete(
         `http://localhost:3022/api/cart/${userProfile._id}/${productId}`
       );
+      enqueueSnackbar({
+        message: "Product removed from cart",
+        variant: "success",
+      });
       fetchCart();
     } catch (error) {
       console.error("Error obteniendo el carrito:", error.message);

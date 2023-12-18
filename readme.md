@@ -1,16 +1,20 @@
-# Da Vinci: Hybrid Applications
+# Moveup Marketplace Fullstack
 
-Univeristy Task
+- **Personal Profile Creation**: Enables users to create and customize their profiles with personal information.
 
-## Features
+- **Switch to Business Account**: Offers an option for users to switch their personal profiles to business accounts, providing access to additional business-oriented features.
 
-- **API RESTful**
-- **Router API**
-- Get, Create, Update and Delete products, categories, users, and user shopping cart.
-- **Authenticate** User with JsonWebToken -> _protected routes_
-- Models, Controllers, Middlewares, Routes.
+- **Product Upload**: Users with business accounts can upload their products, including descriptions, prices, and images.
+
+- **Product Management**: Allows for editing product details like price, description, and images, ensuring that the product listings are always up-to-date.
+
+- **Product Deletion**: Gives the option to remove products from the marketplace, which is useful for discontinued items or out-of-stock products.
+
+
 
 ## Tech Stack
+
+**Client:** ReactJs, TailwindCSS, NextUI, NotiStack.
 
 **Server:** Node, Express, MongoDB, Mongoose
 
@@ -24,20 +28,16 @@ git clone https://github.com/maxivecchio/moveup-marketplace-fullstack
 
 ## Run Server
 
+- Install dependencies
+
 ```bash
-// default
 cd server
-```
-
-Install dependencies
-
-```bash
 npm install
 ```
 
-Environment Configuration
+- Environment Configuration
 
-- Please establish a .env file in the root directory with the following configurations:
+Please establish a .env file in the root directory with the following configurations:
 
 ```bash
 PORT=3022
@@ -56,7 +56,6 @@ node app.js
 ## Run Client
 
 ```bash
-// default
 cd client
 ```
 
