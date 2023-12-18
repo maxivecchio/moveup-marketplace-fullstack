@@ -1,21 +1,14 @@
 # Moveup Marketplace Fullstack
 
 - **Personal Profile Creation**: Enables users to create and customize their profiles with personal information.
-
 - **Switch to Business Account**: Offers an option for users to switch their personal profiles to business accounts, providing access to additional business-oriented features.
-
 - **Product Upload**: Users with business accounts can upload their products, including descriptions, prices, and images.
-
 - **Product Management**: Allows for editing product details like price, description, and images, ensuring that the product listings are always up-to-date.
-
 - **Product Deletion**: Gives the option to remove products from the marketplace, which is useful for discontinued items or out-of-stock products.
-
-
 
 ## Tech Stack
 
 **Client:** ReactJs, TailwindCSS, NextUI, NotiStack.
-
 **Server:** Node, Express, MongoDB, Mongoose
 
 ## Run Locally
